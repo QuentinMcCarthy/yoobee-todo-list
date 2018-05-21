@@ -1,16 +1,24 @@
+.w-87 {
+  width: 87% !important; }
+
 #top-bar {
   height: 4vh;
-  background-color: #90A;
-  top: 10px; }
+  background-color: #90A; }
 
 #nav-menu-div {
   padding: 3px; }
 
 #main-header > h1 {
-  font-size: 2em; }
+  font-size: 2rem; }
 
 #main-content {
   min-height: 500px;
   background-color: #FAFAFA; }
+
+#main-content {
+  font-size: 1.5rem; }
+
+.li-controls {
+  height: 42px; }
 
 /*# sourceMappingURL=master.css.map */
