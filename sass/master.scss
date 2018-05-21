@@ -1,0 +1,35 @@
+// Variables
+
+$webContainerMarginTop:10px;
+$topBarHeight:4vh;
+
+
+// Mixins
+
+
+
+
+// CSS
+
+#web-container {
+	// margin-top:$webContainerMarginTop;
+}
+
+#top-bar {
+	height:$topBarHeight;
+	background-color:#90A;
+	top:$webContainerMarginTop;
+}
+
+#nav-menu-div {
+	padding:3px;
+}
+
+#main-header > h1 {
+	font-size:2em;
+}
+
+#main-content {
+	min-height:500px;
+	background-color:#FAFAFA;
+}
