@@ -38,7 +38,6 @@ var todoList = {
 
 		if(isWriting == "true"){
 			if(inputVal != ""){
-				console.log(typeof todoList.list[itemNum]);
 				if(typeof todoList.list[itemNum] != "undefined"){
 					todoList.list[itemNum] = inputVal;
 				}
@@ -119,7 +118,7 @@ var todoList = {
 
 						$(newControlDiv).append(newDelDiv);
 
-						$(newDelDiv).attr("class","p-1 d-inline-block delButton");
+						$(newDelDiv).attr("class","p-1 ml-1 d-inline-block delButton");
 						$(newDelDiv).attr("data-item",newId);
 
 						newIcon = document.createElement("i");
