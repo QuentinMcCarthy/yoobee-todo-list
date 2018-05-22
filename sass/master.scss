@@ -59,6 +59,7 @@ $topBarHeight:4vh;
 }
 
 .fa-check {
+	display:none;
 	position:absolute;
 	top:3px;
 	left:10px;
@@ -66,4 +67,8 @@ $topBarHeight:4vh;
 
 .li-controls {
 	height:42px;
+}
+
+.writing {
+	color:lightgreen;
 }

@@ -37,11 +37,15 @@
   text-align: center; }
 
 .fa-check {
+  display: none;
   position: absolute;
   top: 3px;
   left: 10px; }
 
 .li-controls {
   height: 42px; }
+
+.writing {
+  color: lightgreen; }
 
 /*# sourceMappingURL=master.css.map */
