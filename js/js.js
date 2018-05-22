@@ -27,7 +27,7 @@ var todoList = {
 		});
 
 		$(del).click(function(){
-			todoList.delete(this)
+			todoList.delete(this);
 		});
 	},
 	write:function(el){
@@ -144,10 +144,23 @@ var todoList = {
 		}
 	},
 	delete:function(el){
-		if((todoList.list.length - 1) != 0){
+		if((todoList.list.length - 1) > 0){
+			console.log("del");
 			var itemNum = $(el).attr("data-item");
 
-			$("dataItem"+itemNum).remove();
+			if((todoList.list.length - 1) > itemNum){
+				$("dataItem"+itemNum).remove();
+
+				var i;
+				for(i = itemNum; i < todoList.list.length; i++){
+					$("#input"+(i+1)).attr("id","input"+i);
+					$(".writeButton[data-item='"+(i+1)+"']").attr("data-item",i);
+					$(".delButton[data-item='"+(i+1)+"']").attr("data-item",i);
+				}
+			}
+			else{
+				$("dataItem"+itemNum).remove();
+			}
 		}
 	},
 	tickToggle:function(el){
