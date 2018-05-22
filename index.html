@@ -36,14 +36,20 @@
 			<div id="main-content" class="container pt-2">
 				<ul id="todo-list">
 					<li>
-						<div class="d-inline-block w-87">
+						<div class="tickBoxPos">
+							<div class="tickBox">
+								<i class="far fa-square"></i>
+								<i class="fas fa-check"></i>
+							</div>
+						</div>
+						<div class="d-inline-block w-86">
 							<input class="w-100" type="text" name="" value="Whatever" disabled>
 						</div>
-						<div class="d-inline-block border bg-white float-right li-controls">
-							<div class="p-1 d-inline-block">
+						<div class="d-inline-block border bg-white float-right li-controls w-13">
+							<div id="writeButton" class="p-1 ml-1 d-inline-block" data-item="0">
 								<i class="fas fa-edit"></i>
 							</div>
-							<div class="p-1 d-inline-block">
+							<div id="delButton" class="p-1 d-inline-block" data-item="1">
 								<i class="fas fa-trash"></i>
 							</div>
 						</div>

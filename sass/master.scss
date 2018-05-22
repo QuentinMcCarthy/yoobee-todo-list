@@ -9,8 +9,11 @@ $topBarHeight:4vh;
 
 // Bootstrap overrides
 
-.w-87 {
-	width:87% !important;
+.w-13 {
+	width:13% !important;
+}
+.w-86 {
+	width:86% !important;
 }
 
 // CSS
@@ -35,6 +38,30 @@ $topBarHeight:4vh;
 
 #main-content {
 	font-size:1.5rem;
+}
+
+#todo-list {
+	list-style:none;
+}
+
+.tickBoxPos {
+	position:relative;
+	top:2px;
+	left:-45px;
+	width:0;
+	height:0;
+}
+
+.tickBox {
+	width:35px;
+	height:35px;
+	text-align:center;
+}
+
+.fa-check {
+	position:absolute;
+	top:3px;
+	left:10px;
 }
 
 .li-controls {
