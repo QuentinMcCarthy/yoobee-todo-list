@@ -48,4 +48,32 @@
 .writing {
   color: lightgreen; }
 
-/*# sourceMappingURL=master.css.map */
+@media screen and (max-width: 575px) {
+  .w-86 {
+    width: 80% !important; }
+  .li-controls {
+    width: 19% !important; } }
+
+@media (min-width: 576px) {
+  .w-86 {
+    width: 80% !important; }
+  .li-controls {
+    width: 19% !important; } }
+
+@media (min-width: 768px) {
+  .w-86 {
+    width: 86% !important; }
+  .li-controls {
+    width: 13% !important; } }
+
+@media (min-width: 992px) {
+  .w-86 {
+    width: 90% !important; }
+  .li-controls {
+    width: 9% !important; } }
+
+@media (min-width: 1200px) {
+  .w-86 {
+    width: 91% !important; }
+  .li-controls {
+    width: 8% !important; } }
