@@ -15,9 +15,11 @@ One for the delButton id that fires the delete method in the object
 One for the tickBox class that fires the tick method in the object
 */
 
+// Object-model syntax for app
 var todoList = {
 	list: [],
 	initEvents:function(tick,write,del){
+		// Click events, init func for DOM, inputs are which elements the events tie into
 		$(tick).click(function(){
 			todoList.tickToggle(this);
 		});
@@ -36,29 +38,40 @@ var todoList = {
 		var inputVal = $(input).val();
 		var isWriting = $(el).attr("data-writing");
 
+		// If the DOM says the user is currently in writing mode
 		if(isWriting == "true"){
+			// If the input is not empty
 			if(inputVal != ""){
+				// If the list item exists
 				if(typeof todoList.list[itemNum] != "undefined"){
+					// Change the value in the array
 					todoList.list[itemNum] = inputVal;
 				}
 				else{
+					// Otherwise push to the array
 					todoList.list.push(inputVal);
 
+					// If the called item is the max array index
 					if((todoList.list.length - 1) == itemNum){
+						// Var for the ID for the newly created input
+						// The new ID is the array length, as the array length is the max index + 1
 						var newId = (todoList.list.length);
 
+						// Create the list item element
 						var newItem = document.createElement("li");
 
 						$("#todo-list").append(newItem);
 
 						$(newItem).attr("id","dataItem"+newId);
 
+						// Create the div that positions the tickbox
 						var newTickPos = document.createElement("div");
 
 						$(newItem).append(newTickPos);
 
 						$(newTickPos).attr("class","tickBoxPos");
 
+						// Create the div that holds the tickbox
 						var newTickBox = document.createElement("div");
 
 						$(newTickPos).append(newTickBox);
@@ -66,24 +79,29 @@ var todoList = {
 						$(newTickBox).attr("class","tickBox");
 						$(newTickBox).attr("data-item",newId);
 
+						// Create the tickbox's box icon
 						var newIcon = document.createElement("i");
 
 						$(newTickBox).append(newIcon);
 
 						$(newIcon).attr("class","far fa-square");
 
+						// Create the tickbox's tick icon
+						// newIcon var re-used as it is not needed to be kept
 						newIcon = document.createElement("i");
 
 						$(newTickBox).append(newIcon);
 
 						$(newIcon).attr("class","fas fa-check");
 
+						// Create the div that holds the input
 						var newInputDiv = document.createElement("div");
 
 						$(newItem).append(newInputDiv);
 
 						$(newInputDiv).attr("class","d-inline-block w-86");
 
+						// Create the input
 						var newInput = document.createElement("input");
 
 						$(newInputDiv).append(newInput);
@@ -94,12 +112,14 @@ var todoList = {
 						$(newInput).attr("placeholder","Click the write button to write");
 						$(newInput).prop("disabled",true);
 
+						// Create the div that holds the controls
 						var newControlDiv = document.createElement("div");
 
 						$(newItem).append(newControlDiv);
 
 						$(newControlDiv).attr("class","d-inline-block border bg-white float-right w-13 li-controls");
 
+						// Create the div that is the write button
 						var newWriteDiv = document.createElement("div");
 
 						$(newControlDiv).append(newWriteDiv);
@@ -108,12 +128,15 @@ var todoList = {
 						$(newWriteDiv).attr("data-item",newId);
 						$(newWriteDiv).attr("data-writing","false");
 
+						// Create the write icon
+						// newIcon var re-used as it is not needed to be kept
 						newIcon = document.createElement("i");
 
 						$(newWriteDiv).append(newIcon);
 
 						$(newIcon).attr("class","fas fa-edit");
 
+						// Create the div that is the delete button
 						var newDelDiv = document.createElement("div");
 
 						$(newControlDiv).append(newDelDiv);
@@ -121,6 +144,8 @@ var todoList = {
 						$(newDelDiv).attr("class","p-1 ml-1 d-inline-block delButton");
 						$(newDelDiv).attr("data-item",newId);
 
+						// Create the delete icon
+						// newIcon var re-used as it is not needed to be kept
 						newIcon = document.createElement("i");
 
 						$(newDelDiv).append(newIcon);
@@ -132,11 +157,13 @@ var todoList = {
 				}
 			}
 
+			// Set the attributes of the elements to turn off writing mode
 			input.prop("disabled",true);
 			$(el).attr("data-writing","false");
 			$(el).removeClass("writing");
 		}
 		else{
+			// Else turn on writing mode
 			$(input).prop("disabled",false);
 			$(el).attr("data-writing","true");
 			$(el).addClass("writing");
@@ -144,20 +171,25 @@ var todoList = {
 		}
 	},
 	delete:function(el){
+		// The array length has to be greater than 0 to be able to delete items
+		// If this wasn't the case, the inputs could be deleted
+		// Breaking the app
 		if((todoList.list.length - 1) >= 0){
 			var itemNum = $(el).attr("data-item");
 
-			$("#dataItem"+itemNum).remove();
+			if((todoList.list.length - 1) < itemNum){
+				$("#dataItem"+itemNum).remove();
 
-			var i;
-			for(i = itemNum; i < (todoList.list.length + 1); i++){
-				$("#dataItem"+i).attr("id","dataItem"+(i-1));
-				$("#input"+i).attr("id","input"+(i-1));
-				$(".writeButton[data-item='"+i+"']").attr("data-item",(i-1));
-				$(".delButton[data-item='"+i+"']").attr("data-item",(i-1));
+				var i;
+				for(i = itemNum; i < (todoList.list.length + 1); i++){
+					$("#dataItem"+i).attr("id","dataItem"+(i-1));
+					$("#input"+i).attr("id","input"+(i-1));
+					$(".writeButton[data-item='"+i+"']").attr("data-item",(i-1));
+					$(".delButton[data-item='"+i+"']").attr("data-item",(i-1));
+				}
+
+				todoList.list.splice(itemNum, 1);
 			}
-
-			todoList.list.splice(itemNum, 1);
 		}
 	},
 	tickToggle:function(el){
