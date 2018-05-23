@@ -18,6 +18,7 @@ One for the tickBox class that fires the tick method in the object
 // Object-model syntax for app
 var todoList = {
 	list: [],
+	ticker:null,
 	initEvents:function(tick,write,del){
 		// Click events, init func for DOM, inputs are which elements the events tie into
 		$(tick).click(function(){
@@ -212,6 +213,42 @@ var todoList = {
 		else{
 			tick.css("display","none");
 		}
+	},
+	everySecond:function(){
+		var dateData = new Date();
+
+		var splitNum;
+
+		var hour = dateData.getHours();
+		var minute = dateData.getMinutes();
+
+		// Turn the number into a string and split it into individual parts
+		splitNum = minute.toString().split("");
+
+		// If the split number turned string has less than 2 items
+		if(splitNum.length < 2){
+			// Add a 0 at the start
+			splitNum.splice(0,0,0);
+
+			// Put it in the variable
+			minute = splitNum[0]+splitNum[1];
+		}
+
+		var second = dateData.getSeconds();
+
+		// Turn the number into a string and split it into individual parts
+		splitNum = second.toString().split("");
+
+		// If the split number turned string has less than 2 items
+		if(splitNum.length < 2){
+			// Add a 0 at the start
+			splitNum.splice(0,0,0);
+
+			// Put it in the variable
+			second = splitNum[0]+splitNum[1];
+		}
+
+		$("#time p").text(hour+":"+minute+":"+second);
 	}
 }
 
@@ -219,4 +256,6 @@ var todoList = {
 $(document).ready(function(){
 	// First initialisation of DOM elements in a docready
 	todoList.initEvents($(".tickBox"),$(".writeButton"),$(".delButton"));
+
+	todoList.ticker = setInterval(todoList.everySecond, 1000);
 });
