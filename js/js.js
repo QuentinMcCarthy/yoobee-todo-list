@@ -171,15 +171,20 @@ var todoList = {
 		}
 	},
 	delete:function(el){
-		// The array length has to be greater than 0 to be able to delete items
+		// The array's max index has to be greater than 0 to be able to delete items
 		// If this wasn't the case, the inputs could be deleted
 		// Breaking the app
 		if((todoList.list.length - 1) >= 0){
 			var itemNum = $(el).attr("data-item");
 
-			if((todoList.list.length - 1) < itemNum){
+			// The array's max index has to be greater than the given item number
+			// If this wasn't the case, the inputs could be deleted
+			// Breaking the app
+			if((todoList.list.length) > itemNum){
 				$("#dataItem"+itemNum).remove();
 
+				// The for loop sets all the classes id's and data-items of the elements
+				// Above the one deleted down one index.
 				var i;
 				for(i = itemNum; i < (todoList.list.length + 1); i++){
 					$("#dataItem"+i).attr("id","dataItem"+(i-1));
@@ -188,11 +193,15 @@ var todoList = {
 					$(".delButton[data-item='"+i+"']").attr("data-item",(i-1));
 				}
 
+				// The item has to be removed at the end, as the for loop uses the
+				// Max length of the array as a reference.
 				todoList.list.splice(itemNum, 1);
 			}
 		}
 	},
 	tickToggle:function(el){
+		// This function just toggles the visibility of the check
+		// In the tickbox
 		var tick = $(el).find(".fa-check");
 
 		var tickDisplay = tick.css("display");
@@ -208,5 +217,6 @@ var todoList = {
 
 
 $(document).ready(function(){
+	// First initialisation of DOM elements in a docready
 	todoList.initEvents($(".tickBox"),$(".writeButton"),$(".delButton"));
 });
