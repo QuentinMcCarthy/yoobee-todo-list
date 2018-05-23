@@ -47,10 +47,14 @@ var todoList = {
 				if(typeof todoList.list[itemNum] != "undefined"){
 					// Change the value in the array
 					todoList.list[itemNum] = inputVal;
+
+					$("#input"+itemNum).attr("data-value",inputVal);
 				}
 				else{
 					// Otherwise push to the array
 					todoList.list.push(inputVal);
+
+					$("#input"+itemNum).attr("data-value",inputVal);
 
 					// If the called item is the max array index
 					if((todoList.list.length - 1) == itemNum){
@@ -111,6 +115,7 @@ var todoList = {
 						$(newInput).attr("class","w-100");
 						$(newInput).attr("type","text");
 						$(newInput).attr("placeholder","Click the write button to write");
+						$(newInput).attr("data-value","");
 						$(newInput).prop("disabled",true);
 
 						// Create the div that holds the controls

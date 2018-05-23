@@ -9,13 +9,6 @@ $topBarHeight:4vh;
 
 // Bootstrap overrides
 
-.w-13 {
-	width:13% !important;
-}
-.w-86 {
-	width:86% !important;
-}
-
 // CSS
 
 #top-bar {
@@ -67,8 +60,13 @@ $topBarHeight:4vh;
 	left:10px;
 }
 
+.inputWidth {
+	width:86% !important;
+}
+
 .li-controls {
 	height:42px;
+	width:13% !important;
 }
 
 .writing {
