@@ -60,36 +60,35 @@ $topBarHeight:4vh;
 	left:10px;
 }
 
+.timestamps {
+	width:105px;
+}
+
 .inputWidth {
-	width:86% !important;
+	width:50% !important;
 }
 
 .li-controls {
 	height:42px;
-	width:13% !important;
+	width:75px !important;
 }
 
 .writing {
 	color:lightgreen;
 }
 
-@media screen and (max-width:575px){
-	.w-86 {
-		width:80% !important;
-	}
-
-	.li-controls {
-		width:19% !important;
-	}
-}
 
 // Extra small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-	.w-86 {
-		width:80% !important;
+	.timestamps {
+		width:25%;
+	}
+
+	.inputWidth {
+		width:56% !important;
 	}
 
 	.li-controls {
@@ -99,8 +98,12 @@ $topBarHeight:4vh;
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-	.w-86 {
-		width:86% !important;
+	.timestamps {
+		width:18%;
+	}
+
+	.inputWidth {
+		width:69% !important;
 	}
 
 	.li-controls {
@@ -110,8 +113,12 @@ $topBarHeight:4vh;
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-	.w-86 {
-		width:90% !important;
+	.timestamps {
+		width:13%;
+	}
+
+	.inputWidth {
+		width:78% !important;
 	}
 
 	.li-controls {
@@ -122,8 +129,12 @@ $topBarHeight:4vh;
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-	.w-86 {
-		width:91% !important;
+	.timestamps {
+		width:11%;
+	}
+
+	.inputWidth {
+		width:81% !important;
 	}
 
 	.li-controls {

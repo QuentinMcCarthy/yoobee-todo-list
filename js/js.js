@@ -47,14 +47,10 @@ var todoList = {
 				if(typeof todoList.list[itemNum] != "undefined"){
 					// Change the value in the array
 					todoList.list[itemNum] = inputVal;
-
-					$("#input"+itemNum).attr("data-value",inputVal);
 				}
 				else{
 					// Otherwise push to the array
 					todoList.list.push(inputVal);
-
-					$("#input"+itemNum).attr("data-value",inputVal);
 
 					// If the called item is the max array index
 					if((todoList.list.length - 1) == itemNum){
@@ -99,12 +95,27 @@ var todoList = {
 
 						$(newIcon).attr("class","fas fa-check");
 
+						// Create the div that holds the timestamp
+						var newTimestampDiv = document.createElement("div");
+
+						$(newItem).append(newTimestampDiv);
+
+						$(newTimestampDiv).attr("id","timestamp"+newId);
+						$(newTimestampDiv).attr("class","d-inline-block timestamps");
+
+						// Create the p element for the timestamp
+						var newTimestamp = document.createElement("p");
+
+						$(newTimestampDiv).append(newTimestamp);
+
+						$(newTimestamp).text("00:00:00");
+
 						// Create the div that holds the input
 						var newInputDiv = document.createElement("div");
 
 						$(newItem).append(newInputDiv);
 
-						$(newInputDiv).attr("class","d-inline-block w-86");
+						$(newInputDiv).attr("class","d-inline-block inputWidth");
 
 						// Create the input
 						var newInput = document.createElement("input");
@@ -163,6 +174,11 @@ var todoList = {
 				}
 			}
 
+			// Keep track of the input's value in the DOM
+			$("#input"+itemNum).attr("data-value",inputVal);
+
+			$("#timestamp"+itemNum+" p").text(todoList.getCurrentTime());
+
 			// Set the attributes of the elements to turn off writing mode
 			input.prop("disabled",true);
 			$(el).attr("data-writing","false");
@@ -194,6 +210,7 @@ var todoList = {
 				var i;
 				for(i = itemNum; i < (todoList.list.length + 1); i++){
 					$("#dataItem"+i).attr("id","dataItem"+(i-1));
+					$("#timestamp"+i).attr("id","timestamp"+(i-1));
 					$("#input"+i).attr("id","input"+(i-1));
 					$(".writeButton[data-item='"+i+"']").attr("data-item",(i-1));
 					$(".delButton[data-item='"+i+"']").attr("data-item",(i-1));
@@ -219,7 +236,7 @@ var todoList = {
 			tick.css("display","none");
 		}
 	},
-	everySecond:function(){
+	getCurrentTime:function(){
 		var dateData = new Date();
 
 		var splitNum;
@@ -253,7 +270,12 @@ var todoList = {
 			second = splitNum[0]+splitNum[1];
 		}
 
-		$("#time p").text(hour+":"+minute+":"+second);
+		var time = hour+":"+minute+":"+second;
+
+		return time;
+	},
+	everySecond:function(){
+		$("#time p").text(todoList.getCurrentTime());
 	}
 }
 
