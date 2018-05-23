@@ -51,7 +51,7 @@ var todoList = {
 
 						$("#todo-list").append(newItem);
 
-						$(newItem).attr("class","dataItem"+newId);
+						$(newItem).attr("id","dataItem"+newId);
 
 						var newTickPos = document.createElement("div");
 
@@ -144,23 +144,20 @@ var todoList = {
 		}
 	},
 	delete:function(el){
-		if((todoList.list.length - 1) > 0){
-			console.log("del");
+		if((todoList.list.length - 1) >= 0){
 			var itemNum = $(el).attr("data-item");
 
-			if((todoList.list.length - 1) > itemNum){
-				$("dataItem"+itemNum).remove();
+			$("#dataItem"+itemNum).remove();
 
-				var i;
-				for(i = itemNum; i < todoList.list.length; i++){
-					$("#input"+(i+1)).attr("id","input"+i);
-					$(".writeButton[data-item='"+(i+1)+"']").attr("data-item",i);
-					$(".delButton[data-item='"+(i+1)+"']").attr("data-item",i);
-				}
+			var i;
+			for(i = itemNum; i < (todoList.list.length + 1); i++){
+				$("#dataItem"+i).attr("id","dataItem"+(i-1));
+				$("#input"+i).attr("id","input"+(i-1));
+				$(".writeButton[data-item='"+i+"']").attr("data-item",(i-1));
+				$(".delButton[data-item='"+i+"']").attr("data-item",(i-1));
 			}
-			else{
-				$("dataItem"+itemNum).remove();
-			}
+
+			todoList.list.splice(itemNum, 1);
 		}
 	},
 	tickToggle:function(el){
