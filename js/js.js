@@ -38,6 +38,7 @@ var todoList = {
 		var input = $("#input"+itemNum)
 		var inputVal = $(input).val();
 		var isWriting = $(el).attr("data-writing");
+		var valChanged = false;
 
 		// If the DOM says the user is currently in writing mode
 		if(isWriting == "true"){
@@ -45,12 +46,19 @@ var todoList = {
 			if(inputVal != ""){
 				// If the list item exists
 				if(typeof todoList.list[itemNum] != "undefined"){
-					// Change the value in the array
-					todoList.list[itemNum] = inputVal;
+					// If the value has changed
+					if(todoList.list[itemNum] !== inputVal){
+						// Change the value in the array
+						todoList.list[itemNum] = inputVal;
+
+						valChanged = true;
+					}
 				}
 				else{
 					// Otherwise push to the array
 					todoList.list.push(inputVal);
+
+					valChanged = true;
 
 					// If the called item is the max array index
 					if((todoList.list.length - 1) == itemNum){
@@ -177,7 +185,9 @@ var todoList = {
 			// Keep track of the input's value in the DOM
 			$("#input"+itemNum).attr("data-value",inputVal);
 
-			$("#timestamp"+itemNum+" p").text(todoList.getCurrentTime());
+			if(valChanged){
+				$("#timestamp"+itemNum+" p").text(todoList.getCurrentTime());
+			}
 
 			// Set the attributes of the elements to turn off writing mode
 			input.prop("disabled",true);
